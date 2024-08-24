@@ -1,5 +1,5 @@
 ---
-title: Terraform从一个简单的例子开始
+title: Terraform基础--从一个简单的例子开始
 date: 2020-01-04T11:44:52+08:00
 slug: terraform-first-example
 tags:

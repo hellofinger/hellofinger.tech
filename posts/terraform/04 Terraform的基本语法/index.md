@@ -1,5 +1,5 @@
 ---
-title: Terraform的基本语法
+title: Terraform基础--基本语法
 date: 2020-02-01T11:17:52+08:00
 slug: terraform-basic
 tags:
