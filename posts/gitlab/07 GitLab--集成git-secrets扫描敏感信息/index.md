@@ -144,8 +144,8 @@ fi
 	patterns = [A-Z0-9]{20}
 	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
 	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
-	allowed = AKIAIOSFODNN7EXAMPLE
-	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+	allowed = <access-key-id>
+	allowed = <access-key-secret>
 ```
 
 ### 4、将上述文件复制到指定目录
@@ -169,7 +169,7 @@ docker restart gitlab
 
 重启后，我们用示例敏感信息测试一下。
 ```bash
-echo "AKIAIOSFODVERYSECRET wJalrXUtnFEMI/K7MDENG/bPxRfiCYVERYSECRET" > README.md
+echo "<test-access-key-id> <test-access-key-secret>" > README.md
 git add README.md
 git commit -m "Test gitlab server side git-secrets"
 git push origin master
