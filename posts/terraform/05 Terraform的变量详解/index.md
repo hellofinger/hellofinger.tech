@@ -1,5 +1,5 @@
 ---
-title: Terraform的变量详解
+title: Terraform基础--变量详解
 date: 2020-02-02T04:23:52+08:00
 slug: terraform-variables
 tags:
