@@ -52,6 +52,7 @@ def scan_all_repository():
 接下来我们详细介绍GitLab如何集成git-secretes。
 
 ### 1、进入服务器Gitlab Docker容器。安装git-secrets。
+
 ```bash
 docker exec -it gitlab /bin/bash
 
@@ -64,6 +65,7 @@ apt-get -y update \
 ![gitab-docker-git-secrets](imgs/gitab-docker-git-secrets.png)
 
 ### 2、编写Git Hooks脚本
+
 ```bash
 # git-secrets.sh
 
@@ -129,6 +131,7 @@ fi
 ```
 
 ### 3、配置 gitconfig
+
 ```
 # .gitconfig
 
@@ -149,6 +152,7 @@ fi
 ```
 
 ### 4、将上述文件复制到指定目录
+
 ```bash
 cp .gitconfig /opt/git-hooks/
 cp git-secrets.sh /opt/git-hooks/update.d/
@@ -156,6 +160,7 @@ chown -R git:git /opt/git-hooks
 ```
 
 ### 5、修改gitlab配置文件。
+
 ```bash
 vim /etc/gitlab/gitlab.rb
 
@@ -163,11 +168,13 @@ gitlab_shell['custom_hooks_dir'] = '/opt/git-hooks'
 ```
 
 ### 6，重启Gitlab。
+
 ```bash
 docker restart gitlab
 ```
 
 重启后，我们用示例敏感信息测试一下。
+
 ```bash
 echo "<test-access-key-id> <test-access-key-secret>" > README.md
 git add README.md
@@ -178,5 +185,5 @@ git push origin master
 ![](imgs/gitlab-git-secret-error.png)
 
 
-### 参考：
+## 参考
 - https://github.com/dhoer/gitlab-secrets
