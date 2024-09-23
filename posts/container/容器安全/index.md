@@ -36,7 +36,7 @@ categories:
 容器安全是指使用安全工具和策略来保护容器化应用程序的各个方面免受潜在风险的过程。容器化环境不仅包含容器和在其中运行的应用程序，还包括容器运行时、内核和主机操作系统等底层基础设施。
 
 
-## 三、容器安全架构组件 (Container Security Architecture Components)
+## 三、容器安全架构组件 
 
 - 编译流水线 (Build Pipeline)
 
@@ -52,7 +52,7 @@ categories:
 
   
 
-## 四、容器安全挑战 (Container Security Challenges) 
+## 四、容器安全挑战
 
 ### 4.1、容器配置错误
 

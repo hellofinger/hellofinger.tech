@@ -2,7 +2,6 @@
 
 title: AWS Serverless - NodeJs实践
 tags:
-
   - Serverless
   - NodeJs
   - AWS

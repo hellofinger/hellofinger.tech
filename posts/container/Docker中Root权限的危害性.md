@@ -73,7 +73,7 @@ demo    ALL=(ALL)       ALL
 退出容器，就有用户demo就有sudo权限了。
 
 
-### 方法二、
+### 方法二
 
 将 /etc/ 目录挂载进 Docker，查看 shadow 和 passwd
 
