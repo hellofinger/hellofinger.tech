@@ -20,21 +20,21 @@ categories:
 
 
 将Kubespray代码克隆到本地，建议不要直接使用master分支，而是使用最近的release分支。
-```
+```shell
 git clone https://github.com/kubernetes-sigs/kubespray.git
 cd kubespray
 git checkout release-2.25
 ```
 
-```
+```shell
 ubuntu@bastion:~/kubespray$ git branch -a
   master
 * release-2.25
   remotes/origin/HEAD -> origin/master
-```
+```shell
 
 创建python虚拟环境，安装Ansible和其他依赖包
-```
+```shell
 python3 -m venv venv
 source venv/bin/activate
 
@@ -42,7 +42,7 @@ pip install -r requirements.txt
 ```
 
 验证Ansible版本
-```
+```shell
 (venv) ubuntu@bastion:~/kubespray$ ansible --version
 ansible [core 2.16.9]
 ```
@@ -52,14 +52,14 @@ ansible [core 2.16.9]
 ### 修改配置
 
 配置Bastion到集群节点免密登录
-```
+```shell
 ssh-copy-id root@192.168.70.129
 ssh-copy-id root@192.168.70.130
 ssh-copy-id root@192.168.70.131
 ```
 
 复制inventory/sample为inventory/mycluster
-```
+```shell
 cp -rfp inventory/sample inventory/mycluster
 
 declare -a IPS=(192.168.70.129 192.168.70.130 192.168.70.131)
@@ -67,7 +67,7 @@ CONFIG_FILE=inventory/mycluster/hosts.yaml python3 contrib/inventory_builder/inv
 ```
 
 修改inventory/mycluster/hosts.yaml (根据自己的主机名修改节点名称)
-```
+```shell
 all:
   hosts:
     controller:
@@ -104,7 +104,7 @@ all:
 ```
 
 国内部署，需要修改k8s镜像源 (https://github.com/kubernetes-sigs/kubespray/blob/master/docs/operations/mirror.md)
-```
+```shell
 sed -i -E '/# .*\{\{ files_repo/s/^# //g' inventory/mycluster/group_vars/all/mirror.yml
 tee -a inventory/mycluster/group_vars/all/mirror.yml <<EOF
 gcr_image_repo: "gcr.m.daocloud.io"
@@ -117,19 +117,19 @@ EOF
 ```
 
 检查参数配置
-```
+```shell
 cat inventory/mycluster/group_vars/all/all.yml
 cat inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
 ```
 
 ### 安装集群
-```
+```shell
 ansible-playbook -i inventory/mycluster/hosts.yaml  --become --become-user=root cluster.yml
 ```
 
 ### 验证集群
 登录到Controller节点，或者将Controller节点上的kube config文件复制到Bastion节点.
-```
+```shell
 root@controller:~/.kube# kubectl get nodes
 NAME         STATUS   ROLES           AGE    VERSION
 controller   Ready    control-plane   218d   v1.29.6
